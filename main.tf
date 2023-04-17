@@ -92,7 +92,7 @@ resource "aws_security_group" "ssh_http_sg_skip" {
     description      = "http to web instance"
     from_port        = 80
     to_port          = 80
-    protocol         = "ssh"
+    protocol         = "http"
     cidr_blocks      = ["172.124.0.0/16"] # VPN IP
   }
 
@@ -123,6 +123,7 @@ resource "aws_security_group" "rds_sg_skip" {
 }
 
 # Creating db subnet group
+# DB instance will be created in the VPC associated with the DB subnet group. If unspecified, will be created in the default VPC.
 # Ref: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_subnet_group
 resource "aws_db_subnet_group" "rds_subnet_group_skip" {
   name       = "db_group"
@@ -165,10 +166,11 @@ data "aws_ssm_parameter" "db_pass_skip" {
 }
 
 # Create your ssh key pair:
-# This can be done through the console in EC2 -> key-pairs 
-# or through your mac using ssh-keygen command
-# In my case, ssh key pair is already present in EC2 console so will pull public key from there
-
+/*
+This can be done through the console in EC2 -> key-pairs 
+or through your mac using ssh-keygen command
+In my case, ssh key pair is already present in EC2 console so will pull public key from there
+*/
 # Obtaining exisitng ssh public key from EC2 key pairs to configure ssh public key on the instance
 data "aws_key_pair" "ec2_access_key_skip" {
   key_name   = "user-access-key"
@@ -182,6 +184,10 @@ data "aws_key_pair" "ec2_access_key_skip" {
 data "aws_ami" "al2_latest_ami_skip" {
   most_recent = true
   owners      = ["amazon"]
+  filter {
+    name = "owner-alias"
+    values = "amazon"
+  }
 
   filter {
     name   = "name"
@@ -198,6 +204,7 @@ data "aws_ami" "al2_latest_ami_skip" {
     values= "ebs" 
   }
 }
+
 
 # Creating AWS EC2 instance and intializing it
 # Public keys for dev can be configured here and database setup can be automated in user_data
