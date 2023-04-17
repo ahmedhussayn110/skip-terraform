@@ -1,0 +1,43 @@
+# AWS doc for EC2 and RDS
+# Ref: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/ec2-rds-connect.html
+# Ref: https://aws.amazon.com/rds/instance-types/
+# Ref: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.Scenarios.html
+
+# Creating public subnet for web and private subnet for database
+# Ref: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet
+
+# Creating internet gateway to access resources over the internet to the subnet
+# Ref: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/internet_gateway
+
+# Creating AWS route_table with default route to internet 
+# Ref: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table
+
+# Associating respective route table to public n
+# Ref: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table_association
+
+# Creating AWS sg for ssh, http conections to EC2 instance via VPN IP address range and allow all outbound traffice
+# Ref: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group
+
+# Creating AWS sg for RDS instance to communicate with EC2 with no outside traffic allowed
+# Ref: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group
+# Ref: https://dev.mysql.com/doc/mysql-port-reference/en/mysql-ports-reference-tables.html#:~:text=Port%203306%20is%20the%20default,such%20as%20mysqldump%20and%20mysqlpump.
+
+# Creating db subnet group
+# Ref: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_subnet_group
+
+# Creating RDS instance and fetcting encrypted password secret from parameter store
+# Ref: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ssm_parameter
+# Ref: https://developer.hashicorp.com/terraform/tutorials/aws/aws-rds?utm_medium=WEB_IO&in=terraform%2Faws&utm_offer=ARTICLE_PAGE&utm_source=WEBSITE&utm_content=DOCS
+
+# Obtaining password from ssm parameter store
+# Ref: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ssm_parameter
+
+# Obtaining latest ami of AL2 with x86_64 arch
+# Ref: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/ami
+# Ref: https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-images.html
+# Ref: https://stackoverflow.com/questions/67648404/terraform-aws-ami-datasource-filter-problem
+
+# Creating AWS EC2 instance and intializing it
+# Public keys for dev can be configured here and database setup can be automated in user_data
+# Ref: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance
+
