@@ -1,7 +1,7 @@
 # skip-terraform
 Repo to display the configuration of IaC using Terraform
 
-Dev team access RDS instance by sshing into the EC2 and using the follwoing command:
+Dev team can access RDS instance by sshing into the EC2 and using the follwoing command:
 
 Warning: Please do not enter password with this command as it will save in the history, press enter and then paste the passowrd into the prompt.
 ```
