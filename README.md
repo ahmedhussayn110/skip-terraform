@@ -12,3 +12,9 @@ Where database-endpoint can be found on RDS -> instance -> endpoint and database
 Please refer architecture and explanation in here:
 
 <img width="816" alt="Screenshot 2023-04-16 at 10 31 25 PM" src="https://user-images.githubusercontent.com/20404165/232389710-d1f26bf1-be37-40f1-9b71-b56f5b205426.png">
+
+Video explanation of the setup:
+
+Part 1 Diagram: https://drive.google.com/file/d/1tAymD_3ZTAvDanggzmWjjLzEgfIrLMG5/view?usp=share_link
+
+Part 2 Script: https://drive.google.com/file/d/11rTyT1smNDFwV9LW9-Pe7HQAaXP-HFlz/view?usp=sharing
