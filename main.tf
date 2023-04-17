@@ -14,6 +14,7 @@ terraform {
 # Configure the AWS Provider in Canada region ca-central-1 with personal aws profile
 provider "aws" {
   profile = "personal"
+  region = "ca-central-1"
 }
 
 # Create a VPC with CIDR block 10.0.0.0/16
@@ -61,7 +62,7 @@ resource "aws_route_table" "private_rt_skip" {
   # based on my understanding the Database should not be exposed to public internet so table does not allow any route
 }
 
-# Associating respective route table to public n
+# Associating respective route table to public and private subnets
 # Ref: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route_table_association
 resource "aws_route_table_association" "public_rt_association_skip" {
   subnet_id      = aws_subnet.public_subnet_skip.id
@@ -164,11 +165,10 @@ data "aws_ssm_parameter" "db_pass_skip" {
 }
 
 # Create your ssh key pair:
-/*
-This can be done through the console in EC2 -> key-pairs 
-or through your mac using ssh-keygen command
-In my case, ssh key pair is already present in EC2 console so will pull public key from there
-*/
+# This can be done through the console in EC2 -> key-pairs 
+# or through your mac using ssh-keygen command
+# In my case, ssh key pair is already present in EC2 console so will pull public key from there
+
 # Obtaining exisitng ssh public key from EC2 key pairs to configure ssh public key on the instance
 data "aws_key_pair" "ec2_access_key_skip" {
   key_name   = "user-access-key"
@@ -182,10 +182,6 @@ data "aws_key_pair" "ec2_access_key_skip" {
 data "aws_ami" "al2_latest_ami_skip" {
   most_recent = true
   owners      = ["amazon"]
-  filter {
-    name = "owner-alias"
-    values = "amazon"
-  }
 
   filter {
     name   = "name"
@@ -202,7 +198,6 @@ data "aws_ami" "al2_latest_ami_skip" {
     values= "ebs" 
   }
 }
-
 
 # Creating AWS EC2 instance and intializing it
 # Public keys for dev can be configured here and database setup can be automated in user_data
@@ -230,6 +225,3 @@ resource "aws_eip" "eip_ec2_skip" {
   instance = aws_instance.web_instance_skip.id
   vpc      = true
 }
-
-
-
