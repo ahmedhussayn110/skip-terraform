@@ -2,7 +2,9 @@
 # Ref: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/ec2-rds-connect.html
 # Ref: https://aws.amazon.com/rds/instance-types/
 # Ref: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.Scenarios.html
+# Ref: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Internet_Gateway.html
 
+# Terraform registry docs:
 # Creating public subnet for web and private subnet for database
 # Ref: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/subnet
 
