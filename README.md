@@ -9,7 +9,6 @@ mysql -h <database-endpoint> -P <database-port> -u <db-username> -p
 ```
 Where database-endpoint can be found on RDS -> instance -> endpoint and database-port is 3306 and db-username is skip. Password can be obtained from parameter store with path /skip/pass. 
 
-Please refer architecture here:
-<img width="798" alt="Screenshot 2023-04-16 at 9 49 40 PM" src="https://user-images.githubusercontent.com/20404165/232381066-c7405322-ab5c-48fe-9d02-d0a5d15fb8b6.png">
+Please refer architecture and explanation in here:
 
-
+<img width="816" alt="Screenshot 2023-04-16 at 10 31 25 PM" src="https://user-images.githubusercontent.com/20404165/232389710-d1f26bf1-be37-40f1-9b71-b56f5b205426.png">
